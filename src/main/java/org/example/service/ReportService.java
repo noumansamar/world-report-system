@@ -2,6 +2,8 @@ package org.example.service;
 
 import org.example.model.Country;
 import org.example.dao.City_rep;
+import org.example.dao.CapitalCity_rep;
+import org.example.model.CapitalCity;
 import org.example.model.City;
 import java.text.NumberFormat;
 import java.util.List;
@@ -34,6 +36,7 @@ public class ReportService
     }
     public void printCityReport(List<City> cities)
     {
+        System.out.println();
         System.out.println("Requirement 2: All the cities in the world organised by largest population to smallest.");
         System.out.println();
         String format = "%-30s %-24s %-20s %15s%n";
@@ -46,5 +49,21 @@ public class ReportService
         }
         System.out.println("=".repeat(95));
         System.out.println("Total cities: " + cities.size());
+    }
+    public void printCapitalCityReport(List<CapitalCity> capitals)
+    {
+        System.out.println();
+        System.out.println("Requirement 3: All the capital cities in the world organised by largest population to smallest.");
+        System.out.println();
+        String format = "%-30s %-24s %15s%n";
+        System.out.printf(format, "Name", "Country", "Population");
+        System.out.println("=".repeat(75));
+        for (CapitalCity c : capitals)
+        {
+            System.out.printf(format, truncate(c.getName(), 30), truncate(c.getCountry(), 24),
+                    NUMBER_FORMAT.format(c.getPopulation()));
+        }
+        System.out.println("=".repeat(75));
+        System.out.println("Total capital cities: " + capitals.size());
     }
 }

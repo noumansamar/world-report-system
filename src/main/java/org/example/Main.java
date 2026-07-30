@@ -6,6 +6,8 @@ import org.example.model.Country;
 import org.example.service.ReportService;
 import org.example.dao.City_rep;
 import org.example.model.City;
+import org.example.dao.CapitalCity_rep;
+import org.example.model.CapitalCity;
 import java.util.List;
 public class Main
 {
@@ -24,6 +26,11 @@ public class Main
             City_rep cityRepo = new City_rep(db);
             List<City> cities = cityRepo.getAllCitiesByPopulationDesc();
             reportService.printCityReport(cities);
+
+            //this is the requirement 3
+            CapitalCity_rep capitalRepo = new CapitalCity_rep(db);
+            List<CapitalCity> capitals = capitalRepo.getAllCapitalCitiesByPopulationDesc();
+            reportService.printCapitalCityReport(capitals);
         }
         finally
         {
