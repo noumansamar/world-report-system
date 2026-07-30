@@ -3,6 +3,8 @@ package org.example.service;
 import org.example.model.Country;
 import org.example.dao.City_rep;
 import org.example.dao.CapitalCity_rep;
+import org.example.dao.Population_rep;
+import org.example.model.PopulationReport;
 import org.example.model.CapitalCity;
 import org.example.model.City;
 import java.text.NumberFormat;
@@ -81,5 +83,20 @@ public class ReportService
         }
         System.out.println("=".repeat(95));
         System.out.println("Total shown: " + cities.size());
+    }
+    public void printPopulationBreakdownReport(List<PopulationReport> reports)
+    {
+        System.out.println();
+        System.out.println("Requirement 5: Population of people, people living in cities, and people not living in cities in each country.");
+        System.out.println();
+        String format = "%-32s %15s %18s %10s %18s %10s%n";
+        System.out.printf(format, "Country", "Total Pop.", "In Cities", "%", "Not In Cities", "%");
+        System.out.println("=".repeat(115));
+        for (PopulationReport r : reports)
+        {
+            System.out.printf(format, truncate(r.getName(), 32), NUMBER_FORMAT.format(r.getTotalPopulation()), NUMBER_FORMAT.format(r.getCityPopulation()), String.format("%.1f%%", r.getCityPercentage()), NUMBER_FORMAT.format(r.getNonCityPopulation()), String.format("%.1f%%", r.getNonCityPercentage()));
+        }
+        System.out.println("=".repeat(115));
+        System.out.println("Total countries: " + reports.size());
     }
 }

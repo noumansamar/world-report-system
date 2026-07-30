@@ -8,6 +8,8 @@ import org.example.dao.City_rep;
 import org.example.model.City;
 import org.example.dao.CapitalCity_rep;
 import org.example.model.CapitalCity;
+import org.example.dao.Population_rep;
+import org.example.model.PopulationReport;
 import java.util.List;
 import java.util.Scanner;
 public class Main
@@ -59,6 +61,11 @@ public class Main
             }
             List<City> topCities = cityRepo.getTopNCitiesByPopulation(n);
             reportService.printTopNCitiesReport(topCities, n);
+
+            //this is the requirement 5
+            Population_rep populationRepo = new Population_rep(db);
+            List<PopulationReport> populationReports = populationRepo.getPopulationBreakdownByCountry();
+            reportService.printPopulationBreakdownReport(populationReports);
         }
         finally
         {
