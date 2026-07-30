@@ -9,6 +9,7 @@ import org.example.model.City;
 import org.example.dao.CapitalCity_rep;
 import org.example.model.CapitalCity;
 import java.util.List;
+import java.util.Scanner;
 public class Main
 {
     public static void main(String[] args)
@@ -31,6 +32,33 @@ public class Main
             CapitalCity_rep capitalRepo = new CapitalCity_rep(db);
             List<CapitalCity> capitals = capitalRepo.getAllCapitalCitiesByPopulationDesc();
             reportService.printCapitalCityReport(capitals);
+
+            //this is the requirement 4
+            Scanner scanner = new Scanner(System.in);
+            int n = 0;
+            boolean validInput = false;
+            while (!validInput)
+            {
+                System.out.print("\nEnter the top N populated cities to display : ");
+                String input = scanner.nextLine().trim();
+                try {
+                    n = Integer.parseInt(input);
+                    if (n > 0)
+                    {
+                        validInput = true;
+                    }
+                    else
+                    {
+                        System.out.println("Please enter a positive number.");
+                    }
+                }
+                catch (NumberFormatException e)
+                {
+                    System.out.println("Invalid input — please enter a whole number.");
+                }
+            }
+            List<City> topCities = cityRepo.getTopNCitiesByPopulation(n);
+            reportService.printTopNCitiesReport(topCities, n);
         }
         finally
         {

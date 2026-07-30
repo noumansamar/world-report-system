@@ -66,4 +66,20 @@ public class ReportService
         System.out.println("=".repeat(75));
         System.out.println("Total capital cities: " + capitals.size());
     }
+    public void printTopNCitiesReport(List<City> cities, int n)
+    {
+        System.out.println();
+        System.out.println("Requirement 4: The top " + n + " populated cities in the world.");
+        System.out.println();
+        String format = "%-30s %-24s %-20s %15s%n";
+        System.out.printf(format, "Name", "Country", "District", "Population");
+        System.out.println("=".repeat(95));
+        for (City c : cities)
+        {
+            System.out.printf(format, truncate(c.getName(), 30), truncate(c.getCountry(), 24), truncate(c.getDistrict(), 20),
+                    NUMBER_FORMAT.format(c.getPopulation()));
+        }
+        System.out.println("=".repeat(95));
+        System.out.println("Total shown: " + cities.size());
+    }
 }
