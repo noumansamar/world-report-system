@@ -48,3 +48,10 @@ Coverage includes:
 ![Integration tests passing](screenshots/it_test.png)
 ## Use Case Diagram
 ![Use Case Diagram](screenshots/Usecase_diag.png)
+
+## Docker
+The application can be built and run in a Docker container using a multi-stage Dockerfile.
+**Build:**
+![Docker image build](screenshots/docker_build.png)
+**Run:**
+![Docker container running](screenshots/docker_container.png)

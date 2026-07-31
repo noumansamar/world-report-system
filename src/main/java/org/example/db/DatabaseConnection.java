@@ -15,12 +15,27 @@ public class DatabaseConnection
     public DatabaseConnection()
     {
         Properties props = loadProperties();
-        String host = props.getProperty("db.host", "localhost");
-        String port = props.getProperty("db.port", "3306");
-        String name = props.getProperty("db.name", "world");
+        // Environment variables take priority over db.properties, so the
+        // same JAR/image works both locally (IntelliJ) and in Docker
+        // without any code changes or rebuilds.
+        String host = getConfig("DB_HOST", props, "db.host", "localhost");
+        String port = getConfig("DB_PORT", props, "db.port", "3306");
+        String name = getConfig("DB_NAME", props, "db.name", "world");
         this.url = "jdbc:mysql://" + host + ":" + port + "/" + name + "?useSSL=false&serverTimezone=UTC";
-        this.username = props.getProperty("db.username", "root");
-        this.password = props.getProperty("db.password", "");
+        this.username = getConfig("DB_USERNAME", props, "db.username", "root");
+        this.password = getConfig("DB_PASSWORD", props, "db.password", "");
+    }
+
+    // Checks an environment variable first, then falls back to the
+    // properties file value, then finally to a hardcoded default.
+    private String getConfig(String envVar, Properties props, String propKey, String defaultValue)
+    {
+        String envValue = System.getenv(envVar);
+        if (envValue != null && !envValue.isBlank())
+        {
+            return envValue;
+        }
+        return props.getProperty(propKey, defaultValue);
     }
     private Properties loadProperties()
     {
