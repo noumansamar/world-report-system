@@ -46,3 +46,5 @@ Coverage includes:
 - `PopulationRepositoryIT` — world population is positive, continent population is less than world total, unknown country returns zero safely
 ### Test Results
 ![Integration tests passing](screenshots/it_test.png)
+## Use Case Diagram
+![Use Case Diagram](screenshots/usecase_dia.png)
