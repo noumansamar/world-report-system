@@ -55,3 +55,12 @@ The application can be built and run in a Docker container using a multi-stage D
 ![Docker image build](screenshots/docker_build.png)
 **Run:**
 ![Docker container running](screenshots/docker_container.png)
+
+## GitHub Actions (CI)
+A GitHub Actions workflow (`.github/workflows/build.yml`) runs automatically on every push
+and pull request. It:
+- Builds the project with Maven
+- Runs the test suite
+- Packages the project into a self-contained JAR
+- Uploads the JAR as a build artifact
+![github action](screenshots/github_action.png)
