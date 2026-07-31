@@ -4,6 +4,8 @@ import org.example.model.Country;
 import org.example.dao.City_rep;
 import org.example.dao.CapitalCity_rep;
 import org.example.dao.Population_rep;
+import org.example.dao.Language_rep;
+import org.example.model.Language_report;
 import org.example.model.PopulationReport;
 import org.example.model.CapitalCity;
 import org.example.model.City;
@@ -109,5 +111,19 @@ public class ReportService
         }
         System.out.println("Population: " + NUMBER_FORMAT.format(population));
         System.out.println();
+    }
+    public void printLanguageReport(List<Language_report> reports)
+    {
+        System.out.println();
+        System.out.println("Requirement 7: Number of people who speak Chinese, English, and Spanish from greatest to smallest, with % of world population.");
+        System.out.println();
+        String format = "%-15s %18s %12s%n";
+        System.out.printf(format, "Language", "Speakers", "% of World");
+        System.out.println("=".repeat(48));
+        for (Language_report r : reports)
+        {
+            System.out.printf(format, r.getLanguage(), NUMBER_FORMAT.format(r.getSpeakers()), String.format("%.2f%%", r.getPercentageOfWorld()));
+        }
+        System.out.println("=".repeat(48));
     }
 }

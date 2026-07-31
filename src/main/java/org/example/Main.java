@@ -10,6 +10,8 @@ import org.example.dao.CapitalCity_rep;
 import org.example.model.CapitalCity;
 import org.example.dao.Population_rep;
 import org.example.model.PopulationReport;
+import org.example.dao.Language_rep;
+import org.example.model.Language_report;
 import java.util.List;
 import java.util.Scanner;
 public class Main
@@ -19,7 +21,6 @@ public class Main
         DatabaseConnection db = new DatabaseConnection();
         try
         {
-
             //this is the requirement one.
             Country_rep countryRepo = new Country_rep(db);
             ReportService reportService = new ReportService();
@@ -123,6 +124,12 @@ public class Main
                 }
                 default -> System.out.println("Invalid option.");
             }
+
+            //this is the requirement 7
+            Language_rep languageRepo = new Language_rep(db);
+            String[] languages = {"Chinese", "English", "Spanish"};
+            List<Language_report> languageReports = languageRepo.getLanguageStats(languages);
+            reportService.printLanguageReport(languageReports);
         }
         finally
         {
