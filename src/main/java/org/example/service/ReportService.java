@@ -99,4 +99,15 @@ public class ReportService
         System.out.println("=".repeat(115));
         System.out.println("Total countries: " + reports.size());
     }
+    public void printSinglePopulation(String label, String name, long population)
+    {
+        System.out.println("Population lookup - " + label);
+        System.out.println();
+        if (name != null)
+        {
+            System.out.println(label + ": " + name);
+        }
+        System.out.println("Population: " + NUMBER_FORMAT.format(population));
+        System.out.println();
+    }
 }

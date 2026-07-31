@@ -19,6 +19,7 @@ public class Main
         DatabaseConnection db = new DatabaseConnection();
         try
         {
+
             //this is the requirement one.
             Country_rep countryRepo = new Country_rep(db);
             ReportService reportService = new ReportService();
@@ -66,6 +67,62 @@ public class Main
             Population_rep populationRepo = new Population_rep(db);
             List<PopulationReport> populationReports = populationRepo.getPopulationBreakdownByCountry();
             reportService.printPopulationBreakdownReport(populationReports);
+
+            //this is the requirement 6
+            System.out.println("\n    Requirement 6: Population Lookup    ");
+            System.out.println("1. World");
+            System.out.println("2. Continent");
+            System.out.println("3. Region");
+            System.out.println("4. Country");
+            System.out.println("5. District");
+            System.out.println("6. City");
+            System.out.print("Choose an option: ");
+            String choice = scanner.nextLine().trim();
+
+            switch (choice)
+            {
+                case "1" ->
+                {
+                    long pop = populationRepo.getWorldPopulation();
+                    reportService.printSinglePopulation("World", null, pop);
+                }
+                case "2" ->
+                {
+                    System.out.print("Enter continent name: ");
+                    String continent = scanner.nextLine().trim();
+                    long pop = populationRepo.getContinentPopulation(continent);
+                    reportService.printSinglePopulation("Continent", continent, pop);
+                }
+                case "3" ->
+                {
+                    System.out.print("Enter region name: ");
+                    String region = scanner.nextLine().trim();
+                    long pop = populationRepo.getRegionPopulation(region);
+                    reportService.printSinglePopulation("Region", region, pop);
+                }
+                case "4" ->
+                {
+                    System.out.print("Enter country name: ");
+                    String country = scanner.nextLine().trim();
+                    long pop = populationRepo.getCountryPopulation(country);
+                    reportService.printSinglePopulation("Country", country, pop);
+                }
+                case "5" ->
+                {
+                    System.out.print("Enter district name: ");
+                    String district = scanner.nextLine().trim();
+                    long pop = populationRepo.getDistrictPopulation(district);
+                    reportService.printSinglePopulation("District", district, pop);
+                }
+                case "6" ->
+                {
+                    System.out.print("Enter city name: ");
+                    String city = scanner.nextLine().trim();
+                    long pop = populationRepo.getCityPopulation(city);
+                    reportService.printSinglePopulation("City", city, pop);
+                }
+                default -> System.out.println("Invalid option.");
+            }
         }
         finally
         {
