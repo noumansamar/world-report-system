@@ -37,3 +37,12 @@ Unit tests are located in `src/test/java` and cover:
 - Top N selection logic
 ### Test Results
 ![Unit tests passing](screenshots/test1.png)
+
+## Integration Testing
+Integration tests are located in `src/test/java/org/example/dao`.
+Coverage includes:
+- `CountryRepositoryIT` — non-empty results, correct descending population order, sanity check on China's population
+- `CityRepositoryIT` — non-empty results, Top N returns the exact count requested, results sorted descending
+- `PopulationRepositoryIT` — world population is positive, continent population is less than world total, unknown country returns zero safely
+### Test Results
+![Integration tests passing](screenshots/it_test.png)
