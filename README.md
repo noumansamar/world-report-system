@@ -28,3 +28,12 @@ A Java-based console application for generating the population reports from the 
 | 6 | Population accessible for world, continent, region, country, district, and city.                                | Yes | ![Requirement 6](screenshots/req6.png) |
 | 7 | Number of speakers of Chinese, English, and Spanish, greatest to smallest, with percentage of world population. | Yes | ![Requirement 7](screenshots/req7.png) |
 | 8 | Update README with screenshots and evidence of each requirement being met.                                      | Yes | ![Requirement 8](screenshots/req8.png) |
+
+## Testing
+Unit tests are located in `src/test/java` and cover:
+- `Country` and `City` model classes.
+- `PopulationReport` calculations (in-city/non-city population, percentages, divide-by-zero and negative-value guards)
+- Sorting logic (countries/cities by population, descending)
+- Top N selection logic
+### Test Results
+![Unit tests passing](screenshots/test1.png)
